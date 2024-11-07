@@ -1,20 +1,130 @@
 {
-  "name": "bunchee-issue-589",
-  "version": "1.0.0",
+  "name": "@llamaindex/env",
+  "description": "environment wrapper, supports all JS environment including node, deno, bun, edge runtime, and cloudflare worker",
+  "version": "0.1.16",
   "type": "module",
-  "description": "",
-  "scripts": {
-    "build": "bunchee"
-  },
+  "types": "dist/index.d.ts",
+  "module": "dist/index.js",
+  "main": "dist/index.cjs",
+  "keywords": [
+    "llm",
+    "llama",
+    "openai",
+    "gpt",
+    "data science",
+    "prompt",
+    "prompt engineering",
+    "chatgpt",
+    "machine learning",
+    "ml",
+    "embedding",
+    "vectorstore",
+    "data framework",
+    "llamaindex"
+  ],
   "exports": {
-    "./a": {
-      "edge-light": "./dist/a.edge-light.js"
+    ".": {
+      "node": {
+        "types": "./dist/index.d.ts",
+        "import": "./dist/index.js",
+        "require": "./dist/index.cjs",
+        "default": "./dist/index.js"
+      },
+      "workerd": {
+        "types": "./dist/index.workerd.d.ts",
+        "default": "./dist/index.workerd.js"
+      },
+      "edge-light": {
+        "types": "./dist/index.edge-light.d.ts",
+        "default": "./dist/index.edge-light.js"
+      },
+      "browser": {
+        "types": "./dist/index.browser.d.ts",
+        "default": "./dist/index.browser.js"
+      },
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
     },
-    "./b": {
-      "default": "./dist/b.js"
+    "./multi-model": {
+      "workerd": {
+        "types": "./multi-model/dist/multi-model.workerd.d.ts",
+        "default": "./multi-model/dist/multi-model.workerd.js"
+      },
+      "edge-light": {
+        "types": "./multi-model/dist/multi-model.edge-light.d.ts",
+        "default": "./multi-model/dist/multi-model.edge-light.js"
+      },
+      "browser": {
+        "types": "./multi-model/dist/multi-model.browser.d.ts",
+        "default": "./multi-model/dist/multi-model.browser.js"
+      },
+      "import": {
+        "types": "./multi-model/dist/multi-model.d.ts",
+        "default": "./multi-model/dist/multi-model.js"
+      },
+      "require": {
+        "types": "./multi-model/dist/multi-model.d.cts",
+        "default": "./multi-model/dist/multi-model.cjs"
+      },
+      "default": {
+        "types": "./multi-model/dist/multi-model.d.ts",
+        "default": "./multi-model/dist/multi-model.js"
+      }
     }
   },
+  "files": [
+    "multi-model",
+    "dist",
+    "CHANGELOG.md",
+    "!**/*.tsbuildinfo"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/run-llama/LlamaIndexTS.git",
+    "directory": "packages/env"
+  },
+  "scripts": {
+    "dev": "bunchee --watch",
+    "build": "bunchee",
+    "test": "vitest"
+  },
   "devDependencies": {
-    "bunchee": "^5.6.0"
+    "@types/node": "^22.9.0",
+    "@types/readable-stream": "^4.0.15",
+    "@xenova/transformers": "^2.17.2",
+    "bunchee": "5.6.1",
+    "gpt-tokenizer": "^2.6.0",
+    "pathe": "^1.1.2",
+    "vitest": "^2.1.4"
+  },
+  "peerDependencies": {
+    "@aws-crypto/sha256-js": "^5.2.0",
+    "@xenova/transformers": "^2.17.2",
+    "gpt-tokenizer": "^2.5.0",
+    "js-tiktoken": "^1.0.12",
+    "pathe": "^1.1.2"
+  },
+  "peerDependenciesMeta": {
+    "@aws-crypto/sha256-js": {
+      "optional": true
+    },
+    "@xenova/transformers": {
+      "optional": true
+    },
+    "pathe": {
+      "optional": true
+    },
+    "tiktoken": {
+      "optional": true
+    },
+    "js-tiktoken": {
+      "optional": true
+    }
   }
 }
